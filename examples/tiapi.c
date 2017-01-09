@@ -2,7 +2,7 @@
  File: $Id$
  Author: John Wu <John.Wu at acm.org>
       Lawrence Berkeley National Laboratory
- Copyright (c) 2014-2016 the Regents of the University of California
+ Copyright (c) 2014-2017 the Regents of the University of California
 */
 /**
    @file tiapi.c

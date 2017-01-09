@@ -1,3 +1,16 @@
+2017-01-05 John Wu <john dot wu at ACM dot org>
+	* src/part.h:532 swap the first two arguments to conform to the
+	convention used in the actual implementation in parth.cpp (a
+	problem reported by Allen Sanderson)
+
+2016-12-15 John Wu <john dot wu at ACM dot org>
+	* configure.ac: apply patch from Allen Sanderson
+
+2016-10-02 John Wu <John dot Wu at ACM dot org>
+	* src/selectClause.h: add enum value FIRST and LAST to
+	ibis::selectClause::AGGREGADO to address the question raised by
+	Mirko Hellmann <mirko.hellmann at bewotec.de>
+
 2016-04-27 John Wu <John dot Wu at ACM dot org>
 	* src/bord.cpp:459 ref[0] should be ref[i], a bug reported by Petr
 	Velan
