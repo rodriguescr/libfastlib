@@ -50,7 +50,7 @@
 #  endif
 # endif
 
-#line 25 "whereParser.yy" // location.cc:296
+#line 23 "fromParser.yy" // location.cc:296
 namespace ibis {
 #line 56 "position.hh" // location.cc:296
   /// Abstract a position.
@@ -174,7 +174,7 @@ namespace ibis {
     return ostr << pos.line << '.' << pos.column;
   }
 
-#line 25 "whereParser.yy" // location.cc:296
+#line 23 "fromParser.yy" // location.cc:296
 } // ibis
 #line 180 "position.hh" // location.cc:296
 #endif // !YY_YY_POSITION_HH_INCLUDED

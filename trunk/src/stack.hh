@@ -40,7 +40,7 @@
 
 # include <vector>
 
-#line 25 "whereParser.yy" // stack.hh:132
+#line 23 "fromParser.yy" // stack.hh:132
 namespace ibis {
 #line 46 "stack.hh" // stack.hh:132
   template <class T, class S = std::vector<T> >
@@ -150,7 +150,7 @@ namespace ibis {
     unsigned int range_;
   };
 
-#line 25 "whereParser.yy" // stack.hh:132
+#line 23 "fromParser.yy" // stack.hh:132
 } // ibis
 #line 156 "stack.hh" // stack.hh:132
 

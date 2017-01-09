@@ -40,7 +40,7 @@
 
 # include "position.hh"
 
-#line 25 "whereParser.yy" // location.cc:296
+#line 23 "fromParser.yy" // location.cc:296
 namespace ibis {
 #line 46 "location.hh" // location.cc:296
   /// Abstract a location.
@@ -186,7 +186,7 @@ namespace ibis {
     return ostr;
   }
 
-#line 25 "whereParser.yy" // location.cc:296
+#line 23 "fromParser.yy" // location.cc:296
 } // ibis
 #line 192 "location.hh" // location.cc:296
 #endif // !YY_YY_LOCATION_HH_INCLUDED
