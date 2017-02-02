@@ -819,7 +819,7 @@ check-text: $(IBISEXE) smatch${EXEEXT} inRange${EXEEXT} $(TESTDIR)/t0/-part.txt 
 	@if [ `scripts/printWarning.pl $(TESTDIR)/check-text.log | wc -l` -eq 0 ]; then echo Log file for $@ contains no warning; else echo Log file for $@ contains some warnings, please examine the file $(TESTDIR)/check-text.log; fi
 	@echo
 check-jrf: $(IBISEXE) $(TESTDIR)/jrf/-part.txt
-	@scripts/jrf-check.pl $(IBISEXE) $(TESTDIR)/jrf | tee $(TESTDIR)/check-jrf.log
+	@scripts/jrf-check.pl $(IBISEXE) $(TESTDIR)/jrf | tee $(TESTDIR)/check-jrf.log 2>&1
 	@if [ `fgrep Success $(TESTDIR)/check-jrf.log | wc -l` -eq 3 ] ; then echo Passed $@; else echo Did NOT pass $@; fi
 	@echo
 check-marksdb: $(TESTDIR)/marksdb/-part.txt $(IBISEXE)
@@ -1075,8 +1075,8 @@ check-sq0: $(THULAEXE) $(IBISEXE) $(TESTDIR)/sq0 $(TESTDIR)/smallmem1.rc $(TESTD
 	@echo
 #	@$(THULAEXE) -c $(TESTDIR)/smallmem1.rc -d $(TESTDIR)/sq0 -v -t 100 >> $(TESTDIR)/$@.log 2>&1
 #	@$(THULAEXE) -c $(TESTDIR)/smallmem2.rc -d $(TESTDIR)/sq0 -v -t 100 >> $(TESTDIR)/$@.log 2>&1
-$(TESTDIR)/sq0: setqgen$(EXEEXT) TESTDIR
-	@test -d $(TESTDIR)/sq0 || ./setqgen$(EXEEXT) $(TESTDIR)/sq0 1.6e6 7e5 >| $(TESTDIR)/check-sq0.log 2>&1
+sq0-data $(TESTDIR)/sq0: setqgen$(EXEEXT) TESTDIR
+	@test -d $(TESTDIR)/sq0 || ./setqgen$(EXEEXT) $(TESTDIR)/sq0 1.6e6 7e5 >| tee $(TESTDIR)/check-sq0.log 2>&1
 # this test suite has enough rows to fill a 1.6GB memory cache,
 # completing it might take a couple of hours on a typical PC with at
 # least 4GB of memory.  The number of rows in the test data is about 25
@@ -1091,8 +1091,8 @@ check-sq1: $(THULAEXE) $(IBISEXE) $(TESTDIR)/sq1 $(TESTDIR)/smallmem1.rc $(TESTD
 	@$(THULAEXE) -c $(TESTDIR)/smallmem1.rc -d $(TESTDIR)/sq1 -v -t 100 >> $(TESTDIR)/$@.log 2>&1
 	@if [ `fgrep 'doTest iteration' $(TESTDIR)/$@.log | fgrep Warning | wc -l` -le 200 ]; then echo Log file for $@ contains the expected number of warnings; else echo Log file for $@ contains some extra warnings, please examine the file $(TESTDIR)/$@.log; fi
 	@echo
-$(TESTDIR)/sq1: setqgen$(EXEEXT) $(TESTDIR)/smallmem3.rc TESTDIR
-	@test -d $(TESTDIR)/sq1 || ./setqgen$(EXEEXT) $(TESTDIR)/sq1 -1 -1 $(TESTDIR)/smallmem3.rc >| $(TESTDIR)/check-sq1.log 2>&1
+sq1-data $(TESTDIR)/sq1: setqgen$(EXEEXT) $(TESTDIR)/smallmem3.rc TESTDIR
+	@test -d $(TESTDIR)/sq1 || ./setqgen$(EXEEXT) $(TESTDIR)/sq1 -1 -1 $(TESTDIR)/smallmem3.rc >| tee $(TESTDIR)/check-sq1.log 2>&1
 # testing with 1 billion rows, will encounter failures.  Tests could
 # take ten hours or more depending on your test machine.  Because most
 # of the query evaluation will take a significant amount of memory, this
@@ -1104,8 +1104,8 @@ check-sq2: $(THULAEXE) $(TESTDIR)/sq2 $(TESTDIR)/smallmem1.rc $(TESTDIR)/smallme
 	@$(THULAEXE) -c $(TESTDIR)/smallmem3.rc -d $(TESTDIR)/sq2 -v -t 100 >> $(TESTDIR)/$@.log 2>&1
 	@if [ `scripts/printWarning.pl $(TESTDIR)/$@.log | wc -l` -le 400 ]; then echo Log file for $@ contains the expected number of warnings; else echo Log file for $@ contains some extra warnings, please examine the file $(TESTDIR)/$@.log; fi
 	@echo
-$(TESTDIR)/sq2: setqgen$(EXEEXT) TESTDIR
-	@test -d $(TESTDIR)/sq2 || ./setqgen$(EXEEXT) $(TESTDIR)/sq2 1e9 3e7 >| $(TESTDIR)/check-sq2.log 2>&1
+sq2-data $(TESTDIR)/sq2: setqgen$(EXEEXT) TESTDIR
+	@test -d $(TESTDIR)/sq2 || ./setqgen$(EXEEXT) $(TESTDIR)/sq2 1e9 3e7 >| tee $(TESTDIR)/check-sq2.log 2>&1
 #
 TESTDIR:
 	@test -d $(TESTDIR) || (mkdir -p $(TESTDIR) && echo "File $(TESTDIR)/std.log started on " `date` >> $(TESTDIR)/std.log)
@@ -1115,21 +1115,21 @@ $(TESTDIR)/1: $(TESTDIR)
 	@test -d $(TESTDIR)/1 || mkdir $(TESTDIR)/1
 $(TESTDIR)/2: $(TESTDIR)
 	@test -d $(TESTDIR)/2 || mkdir $(TESTDIR)/2
-$(TESTDIR)/marksdb/-part.txt: readcsv$(EXEEXT) marksdb.csv TESTDIR
+marksdb-data $(TESTDIR)/marksdb/-part.txt: readcsv$(EXEEXT) marksdb.csv TESTDIR
 	@test -f $(TESTDIR)/marksdb/-part.txt || ./readcsv marksdb.csv $(TESTDIR)/marksdb >> $(TESTDIR)/std.log 2>&1
 $(TESTDIR)/maurel/-part.txt: $(ARDEAEXE) maurel.csv TESTDIR
 	@test -f $(TESTDIR)/maurel/-part.txt || $(ARDEAEXE) -t maurel.csv -d $(TESTDIR)/maurel -m "b:k, r:s, c:s, f:s, e:s, y:s, g:k, t:s, n:k, a:k, v:s, i:k, h:s, d:k, p:s, q:k, s:s, m:s, j:k" >> $(TESTDIR)/std.log 2>&1
-$(TESTDIR)/jrf/-part.txt: jrf$(EXEEXT) TESTDIR
+jrf-data $(TESTDIR)/jrf/-part.txt: jrf$(EXEEXT) TESTDIR
 	@test -f $(TESTDIR)/jrf/-part.txt || ./jrf$(EXEEXT) $(TESTDIR)/jrf 1e5 >> $(TESTDIR)/std.log 2>&1
-$(TESTDIR)/js2/-part.txt: $(ARDEAEXE) js2.csv TESTDIR
+js2-data $(TESTDIR)/js2/-part.txt: $(ARDEAEXE) js2.csv TESTDIR
 	@test -f $(TESTDIR)/js2/-part.txt || $(ARDEAEXE) -t js2.csv -m "id:s, s:b, t:d" -d $(TESTDIR)/js2 >> $(TESTDIR)/std.log 2>&1
 $(TESTDIR)/0/test0/-part.txt: $(TESTDIR)/0 test0.csv $(ARDEAEXE) TESTDIR
 	@test -f $(TESTDIR)/0/test0/-part.txt || $(ARDEAEXE) -v -m "i0:ub, i1:f, i2:s" -t test0.csv -d $(TESTDIR)/0/test0 >> $(TESTDIR)/std.log 2>&1
 $(TESTDIR)/0/test1/-part.txt: $(TESTDIR)/0 test1.csv readcsv$(EXEEXT) TESTDIR
 	@test -f $(TESTDIR)/0/test1/-part.txt || ./readcsv test1.csv $(TESTDIR)/0/test1 >> $(TESTDIR)/std.log 2>&1
-$(TESTDIR)/m0/-part.txt: $(ARDEAEXE) test0.csv TESTDIR
+m0-data $(TESTDIR)/m0/-part.txt: $(ARDEAEXE) test0.csv TESTDIR
 	@test -f $(TESTDIR)/m0/-part.txt || $(ARDEAEXE) -d $(TESTDIR)/m0 -m "a:b, b:f, c:s" -t test0.csv -tag "meshShape=(20,5)" >> $(TESTDIR)/std.log 2>&1
-$(TESTDIR)/m1/-part.txt: $(ARDEAEXE) test1.csv TESTDIR
+m1-data $(TESTDIR)/m1/-part.txt: $(ARDEAEXE) test1.csv TESTDIR
 	@test -f $(TESTDIR)/m1/-part.txt || $(ARDEAEXE) -d $(TESTDIR)/m1 -m "a0:d, a1:b, a2:b, b0:f, b1:s, b2:s, c0:f, c1:i, c2:i" -t test1.csv -tag "meshShape=(10, 10, 10)" >> $(TESTDIR)/std.log 2>&1
 # really small data partitions (wee == very small)
 $(TESTDIR)/w1/-part.txt: $(ARDEAEXE) TESTDIR
@@ -1240,7 +1240,8 @@ $(TCAPIEXE):
 .PHONY: check-ibis check-thula check-tcapi do-small-append do-large-append
 .PHONY: check-text check-marksdb check-maurel small-tests really-small
 .PHONY: check-jrf check-labeling TESTDIR check-sq0 check-sq1 check-sq2
-.PHONY: check-js2
+.PHONY: check-js2 sq0-data sq1-data sq2-data marksdb-data jrf-data
+.PHONY: js2-data m0-data m1-data
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.

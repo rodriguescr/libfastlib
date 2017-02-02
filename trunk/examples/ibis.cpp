@@ -350,9 +350,9 @@ static void printColumn(const ibis::part& tbl, const char* cname,
     else if (nb != (long)counts.size() || bounds.size() != counts.size()+1) {
         ibis::util::logger lg;
         lg() << "get1DDistribution return value (" << nb
-             << ") does match the size of array counts ("
-             << counts.size() << ") or bounds.size(" << bounds.size()
-             << ") does not equual to 1+counts.size (" << counts.size();
+             << ") does match the size of array counts (" << counts.size()
+             << "), or bounds.size(" << bounds.size()
+             << ") does not equal to 1+counts.size (" << counts.size() << ')';
         return;
     }
     else {
