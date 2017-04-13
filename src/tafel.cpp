@@ -1880,10 +1880,10 @@ int ibis::tafel::write(const char* dir, const char* tname,
         timer.stop();
         ibis::util::logger()()
             << "tafel::write completed writing partition '" 
-            << (tname?tname:"") << "' (" << (tdesc?tdesc:"") << ") with "
-            << cols.size() << " column" << (cols.size()>1 ? "s" : "")
-            << " and " << mrows << " row" << (mrows>1 ? "s" : "")
-            << " to " << (dir?dir:"tmp")
+            << (tname?tname:"<UNNAMED>") << "' (" << (tdesc?tdesc:"")
+            << ") with " << cols.size() << " column"
+            << (cols.size()>1 ? "s" : "") << " and " << mrows << " row"
+            << (mrows>1 ? "s" : "") << " to " << (dir?dir:"tmp")
             << " using " << timer.CPUTime() << " sec(CPU), "
             << timer.realTime() << " sec(elapsed)";
     }

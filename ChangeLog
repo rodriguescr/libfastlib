@@ -30,7 +30,7 @@
 	logical in taking the incoming argument for sorting directions
 	(ascin)
 	* tests/vault/marksdb-3: correct the output expected, previous
-	results was sorted in the in correct oder (thanks to the bug
+	results was sorted in an incorrect order (thanks to the bug
 	report from Will Glozer <will at kentik dot com> for bringing
 	attention to this problem)
 
