@@ -349,8 +349,10 @@ ibis::table* ibis::filter::select() const {
             ibis::util::logger lg;
             lg() << "Warning -- filter::select absorbed a bad_alloc ("
                  << e.what() << "), will return a nil pointer";
-            if (ibis::gVerbose > 1)
+            if (ibis::gVerbose > 2) {
+                lg() << "\n";
                 ibis::fileManager::instance().printStatus(lg());
+            }
         }
         ibis::util::emptyCache();
     }
@@ -359,8 +361,10 @@ ibis::table* ibis::filter::select() const {
             ibis::util::logger lg;
             lg() << "Warning -- filter::select absorbed a std::exception ("
                  << e.what() << "), will return a nil pointer";
-            if (ibis::gVerbose > 1)
+            if (ibis::gVerbose > 2) {
+                lg() << "\n";
                 ibis::fileManager::instance().printStatus(lg());
+            }
         }
         ibis::util::emptyCache();
     }
@@ -369,8 +373,10 @@ ibis::table* ibis::filter::select() const {
             ibis::util::logger lg;
             lg() << "Warning -- filter::select absorbed a string exception ("
                  << s << "), will return a nil pointer";
-            if (ibis::gVerbose > 1)
+            if (ibis::gVerbose > 2) {
+                lg() << "\n";
                 ibis::fileManager::instance().printStatus(lg());
+            }
         }
         ibis::util::emptyCache();
     }
@@ -379,8 +385,10 @@ ibis::table* ibis::filter::select() const {
             ibis::util::logger lg;
             lg() << "Warning -- filter::select absorbed an unknown exception, "
                 "will return a nil pointer";
-            if (ibis::gVerbose > 1)
+            if (ibis::gVerbose > 2) {
+                lg() << "\n";
                 ibis::fileManager::instance().printStatus(lg());
+            }
         }
         ibis::util::emptyCache();
     }
@@ -430,8 +438,10 @@ ibis::table* ibis::filter::select(const char* sstr) const {
             ibis::util::logger lg;
             lg() << "Warning -- filter::select absorbed a bad_alloc ("
                  << e.what() << "), will return a nil pointer";
-            if (ibis::gVerbose > 1)
+            if (ibis::gVerbose > 2) {
+                lg() << "\n";
                 ibis::fileManager::instance().printStatus(lg());
+            }
         }
         ibis::util::emptyCache();
     }
@@ -440,8 +450,10 @@ ibis::table* ibis::filter::select(const char* sstr) const {
             ibis::util::logger lg;
             lg() << "Warning -- filter::select absorbed a std::exception ("
                  << e.what() << "), will return a nil pointer";
-            if (ibis::gVerbose > 1)
+            if (ibis::gVerbose > 2) {
+                lg() << "\n";
                 ibis::fileManager::instance().printStatus(lg());
+            }
         }
         ibis::util::emptyCache();
     }
@@ -450,8 +462,10 @@ ibis::table* ibis::filter::select(const char* sstr) const {
             ibis::util::logger lg;
             lg() << "Warning -- filter::select absorbed a string exception ("
                  << s << "), will return a nil pointer";
-            if (ibis::gVerbose > 1)
+            if (ibis::gVerbose > 2) {
+                lg() << "\n";
                 ibis::fileManager::instance().printStatus(lg());
+            }
         }
         ibis::util::emptyCache();
     }
@@ -460,8 +474,10 @@ ibis::table* ibis::filter::select(const char* sstr) const {
             ibis::util::logger lg;
             lg() << "Warning -- filter::select absorbed an unknown exception, "
                 "will return a nil pointer";
-            if (ibis::gVerbose > 1)
+            if (ibis::gVerbose > 2) {
+                lg() << "\n";
                 ibis::fileManager::instance().printStatus(lg());
+            }
         }
         ibis::util::emptyCache();
     }
@@ -512,8 +528,10 @@ ibis::filter::select(const ibis::table::stringArray& colnames) const {
             ibis::util::logger lg;
             lg() << "Warning -- filter::select absorbed a bad_alloc ("
                  << e.what() << "), will return a nil pointer";
-            if (ibis::gVerbose > 1)
+            if (ibis::gVerbose > 2) {
+                lg() << "\n";
                 ibis::fileManager::instance().printStatus(lg());
+            }
         }
         ibis::util::emptyCache();
     }
@@ -522,8 +540,10 @@ ibis::filter::select(const ibis::table::stringArray& colnames) const {
             ibis::util::logger lg;
             lg() << "Warning -- filter::select absorbed a std::exception ("
                  << e.what() << "), will return a nil pointer";
-            if (ibis::gVerbose > 1)
+            if (ibis::gVerbose > 2) {
+                lg() << "\n";
                 ibis::fileManager::instance().printStatus(lg());
+            }
         }
         ibis::util::emptyCache();
     }
@@ -532,8 +552,10 @@ ibis::filter::select(const ibis::table::stringArray& colnames) const {
             ibis::util::logger lg;
             lg() << "Warning -- filter::select absorbed a string exception ("
                  << s << "), will return a nil pointer";
-            if (ibis::gVerbose > 1)
+            if (ibis::gVerbose > 2) {
+                lg() << "\n";
                 ibis::fileManager::instance().printStatus(lg());
+            }
         }
         ibis::util::emptyCache();
     }
@@ -542,8 +564,10 @@ ibis::filter::select(const ibis::table::stringArray& colnames) const {
             ibis::util::logger lg;
             lg() << "Warning -- filter::select absorbed an unknown exception, "
                 "will return a nil pointer";
-            if (ibis::gVerbose > 1)
+            if (ibis::gVerbose > 2) {
+                lg() << "\n";
                 ibis::fileManager::instance().printStatus(lg());
+            }
         }
         ibis::util::emptyCache();
     }
@@ -2708,8 +2732,10 @@ ibis::table* ibis::table::select(const ibis::constPartList& mylist,
             ibis::util::logger lg;
             lg() << "Warning -- table::select absorbed a bad_alloc exception ("
                  << e.what() << "), will return a nil pointer";
-            if (ibis::gVerbose > 3)
+            if (ibis::gVerbose > 3) {
+                lg() << "\n";
                 ibis::fileManager::instance().printStatus(lg());
+            }
         }
         ibis::util::emptyCache();
     }
@@ -2718,8 +2744,10 @@ ibis::table* ibis::table::select(const ibis::constPartList& mylist,
             ibis::util::logger lg;
             lg() << "Warning -- table::select absorbed a std::exception ("
                  << e.what() << "), will return a nil pointer";
-            if (ibis::gVerbose > 3)
+            if (ibis::gVerbose > 3) {
+                lg() << "\n";
                 ibis::fileManager::instance().printStatus(lg());
+            }
         }
         ibis::util::emptyCache();
     }
@@ -2728,8 +2756,10 @@ ibis::table* ibis::table::select(const ibis::constPartList& mylist,
             ibis::util::logger lg;
             lg() << "Warning -- table::select absorbed a string exception ("
                  << s << "), will return a nil pointer";
-            if (ibis::gVerbose > 3)
+            if (ibis::gVerbose > 3) {
+                lg() << "\n";
                 ibis::fileManager::instance().printStatus(lg());
+            }
         }
         ibis::util::emptyCache();
     }
@@ -2738,8 +2768,10 @@ ibis::table* ibis::table::select(const ibis::constPartList& mylist,
             ibis::util::logger lg;
             lg() << "Warning -- table::select absorbed an unknown exception, "
                 "will return a nil pointer";
-            if (ibis::gVerbose > 3)
+            if (ibis::gVerbose > 3) {
+                lg() << "\n";
                 ibis::fileManager::instance().printStatus(lg());
+            }
         }
         ibis::util::emptyCache();
     }
@@ -2790,8 +2822,10 @@ ibis::table* ibis::table::select(const ibis::constPartList& plist,
             ibis::util::logger lg;
             lg() << "Warning -- table::select absorbed a std::exception ("
                  << e.what() << "), will return a nil pointer";
-            if (ibis::gVerbose > 3)
+            if (ibis::gVerbose > 3) {
+                lg() << "\n";
                 ibis::fileManager::instance().printStatus(lg());
+            }
         }
         ibis::util::emptyCache();
     }
@@ -2800,8 +2834,10 @@ ibis::table* ibis::table::select(const ibis::constPartList& plist,
             ibis::util::logger lg;
             lg() << "Warning -- table::select absorbed a string exception ("
                  << s << "), will return a nil pointer";
-            if (ibis::gVerbose > 3)
+            if (ibis::gVerbose > 3) {
+                lg() << "\n";
                 ibis::fileManager::instance().printStatus(lg());
+            }
         }
         ibis::util::emptyCache();
     }
@@ -2810,8 +2846,10 @@ ibis::table* ibis::table::select(const ibis::constPartList& plist,
             ibis::util::logger lg;
             lg() << "Warning -- table::select absorbed an unknown exception, "
                 "will return a nil pointer";
-            if (ibis::gVerbose > 3)
+            if (ibis::gVerbose > 3) {
+                lg() << "\n";
                 ibis::fileManager::instance().printStatus(lg());
+            }
         }
         ibis::util::emptyCache();
     }

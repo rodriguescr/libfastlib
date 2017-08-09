@@ -1,4 +1,4 @@
-#!/usr/bin/perl
+#!/usr/bin/env perl
 # This script takes three arguments:
 #  command-to-run query-hits-list tmp-filename
 # The query-hits-list is a file with a string and a number on each line

@@ -1521,9 +1521,15 @@ ibis::bundles::bundles(const ibis::part& tbl, const ibis::selectClause& cmps,
         }
     }
     catch (...) {
-        LOGGER(ibis::gVerbose >= 0)
-            << "Warning -- bundles::ctor received an exception, "
-            "start cleaning up" IBIS_FILE_LINE;
+        if (ibis::gVerbose >= 0) {
+            ibis::util::logger lg;
+            lg() << "Warning -- bundles::ctor received an exception, "
+                "start cleaning up" IBIS_FILE_LINE;
+            if (ibis::gVerbose > 3) {
+                lg() << "\n\n";
+                ibis::fileManager::instance().printStatus(lg());
+            }
+        }
         clear();
         throw; // rethrow the exception
     }

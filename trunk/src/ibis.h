@@ -49,9 +49,9 @@
 <A HREF="http://sdm.lbl.gov/">Scientific Data Management</A>,
 <A HREF="http://www.lbl.gov/">Lawrence Berkeley National Lab</A>
 \n With additional contributors listed in files
-<A HREF="https://codeforge.lbl.gov/plugins/scmsvn/viewcvs.php/trunk/AUTHORS?root=fastbit&view=markup">AUTHORS</A>
+<A HREF="https://code.lbl.gov/plugins/scmsvn/viewcvs.php/trunk/AUTHORS?root=fastbit&view=markup">AUTHORS</A>
 and
-<A HREF="https://codeforge.lbl.gov/plugins/scmsvn/viewcvs.php/trunk/ChangeLog?root=fastbit&view=markup">ChangeLog</A>.
+<A HREF="https://code.lbl.gov/plugins/scmsvn/viewcvs.php/trunk/ChangeLog?root=fastbit&view=markup">ChangeLog</A>.
 
 \Copyright (c) 2000-2017
 <A HREF="http://www.universityofcalifornia.edu/">University of California</A>
@@ -68,7 +68,7 @@ top of it.  In particular, the user data is NOT required to be under the
 control of FastBit software.
 
 The source code of FastBit is available at <A
-HREF="https://codeforge.lbl.gov/projects/fastbit/">http://goo.gl/JYMzu</A>
+HREF="https://code.lbl.gov/projects/fastbit/">http://goo.gl/JYMzu</A>
 under <A HREF="http://crd.lbl.gov/~kewu/fastbit/src/license.txt">LGPL</A>.
 
 \section bitmap Bitmap Index
@@ -233,9 +233,9 @@ crucial in establishing the foundation of the FastBit system and applying
 the software to a number of applications.  Many thanks to the early users.
 Their generous feedback and suggestions are invaluable to the development
 of the software.  A full list of contributors is in the file <A
-HREF="https://codeforge.lbl.gov/plugins/scmsvn/viewcvs.php/trunk/AUTHORS?root=fastbit&view=markup">AUTHORS</A>.
+HREF="https://code.lbl.gov/plugins/scmsvn/viewcvs.php/trunk/AUTHORS?root=fastbit&view=markup">AUTHORS</A>.
 User feedback affecting the code and documentation is recorded in <A
-HREF="https://codeforge.lbl.gov/plugins/scmsvn/viewcvs.php/trunk/ChangeLog?root=fastbit&view=markup">ChangeLog</A>
+HREF="https://code.lbl.gov/plugins/scmsvn/viewcvs.php/trunk/ChangeLog?root=fastbit&view=markup">ChangeLog</A>
 along with user names.
 
 This work was supported by the Director, Office of Science, Office of

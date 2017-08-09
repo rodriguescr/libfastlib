@@ -6098,14 +6098,14 @@ void ibis::bin::print(std::ostream& out) const {
                     << bits[i]->size() << " bits, but expected " << nrows;
         }
         if (nrows < cnt) {
-            out << "Warning -- There are a total " << cnt << " set bits out of "
-                << nrows << " bits in an index for " << (col ? col->name() : "?")
-                << "\n";
+            out << "Warning -- There are " << cnt
+                << " set bits, which is more than " << nrows << " rows for "
+                << (col ? col->name() : "?") << "\n";
         }
         else if (nrows > cnt) {
-            out << "There are a total " << cnt << " set bits out of " << nrows
-                << " bits -- there are probably NULL values in column "
-                << (col ? col->name() : "?") << "\n";
+            out << "There are only " << cnt << " set bits out of " << nrows
+                << " total rows -- maybe some bit vectors are not active or "
+                "NULL values in column " << (col ? col->name() : "?") << "\n";
         }
     }
     else if (nobs > 0) { // the short form

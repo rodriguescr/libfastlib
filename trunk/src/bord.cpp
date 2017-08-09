@@ -3707,10 +3707,10 @@ long ibis::bord::reorder(const ibis::table::stringArray& cols,
                     oss << ", " << cols[i];
                 LOGGER(true)
                     << "Warning -- " << evt << " -- user specified ordering "
-                    "keys (" << oss.str() << ") contain too few distinct "
-                    "values, will order with all integer columns"
-                    << (diropt<0?" in the descending order":"");
+                    "keys (" << oss.str() << ") either have only a possible "
+                    "value or do not exist, return 0 now";
             }
+            return ierr;
         }
 
         load.clear();
