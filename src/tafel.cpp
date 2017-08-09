@@ -1576,7 +1576,7 @@ int ibis::tafel::writeMetaData(const char* dir, const char* tname,
     }
     int ierr;
     ibis::horometer timer;
-    if (ibis::gVerbose > 0)
+    if (ibis::gVerbose > 1)
         timer.start();
 
     uint64_t nr = 0, nb;
@@ -1823,7 +1823,7 @@ int ibis::tafel::writeMetaData(const char* dir, const char* tname,
         }
     }
     md.close(); // close the file
-    if (ibis::gVerbose > 0) {
+    if (ibis::gVerbose > 1) {
         timer.stop();
         ibis::util::logger()()
             << "tafel::writeMetaData completed writing partition " 
@@ -1855,7 +1855,7 @@ int ibis::tafel::write(const char* dir, const char* tname,
     }
     int ierr = 0;
     ibis::horometer timer;
-    if (ibis::gVerbose > 0)
+    if (ibis::gVerbose > 2)
         timer.start();
     do {
         int jerr = writeData(dir, tname, tdesc, idx, nvpairs, ierr);
@@ -1876,11 +1876,11 @@ int ibis::tafel::write(const char* dir, const char* tname,
                 ++ ipart;
         }
     } while ((unsigned)ierr < mrows);
-    if (ierr >= (long)mrows && ibis::gVerbose > 0) {
+    if (ierr >= (long)mrows && ibis::gVerbose > 2) {
         timer.stop();
         ibis::util::logger()()
             << "tafel::write completed writing partition '" 
-            << (tname?tname:"<UNNAMED>") << "' (" << (tdesc?tdesc:"")
+            << (tname?tname:dir?dir:"<UNNAMED>") << "' (" << (tdesc?tdesc:"")
             << ") with " << cols.size() << " column"
             << (cols.size()>1 ? "s" : "") << " and " << mrows << " row"
             << (mrows>1 ? "s" : "") << " to " << (dir?dir:"tmp")
@@ -1908,7 +1908,7 @@ int ibis::tafel::writeData(const char* dir, const char* tname,
             << "tafel::writeData sets the output directory name to be tmp";
     }
     ibis::horometer timer;
-    if (ibis::gVerbose > 2)
+    if (ibis::gVerbose > 0)
         timer.start();
 
     std::string oldnm, olddesc, oldidx, oldtags, dirstr;
@@ -2439,10 +2439,10 @@ int ibis::tafel::writeData(const char* dir, const char* tname,
     }
     md.close(); // close the metadata file
     ibis::fileManager::instance().flushDir(mydir);
-    if (ibis::gVerbose > 2) {
+    if (ibis::gVerbose > 0) {
         timer.stop();
         ibis::util::logger()()
-            << "tafel::writeData outputted " 
+            << "tafel::writeData successfully wrote " 
             << cols.size() << " column" << (cols.size()>1 ? "s" : "")
             << " and " << nnew << " row" << (nnew>1 ? "s" : "")
             << " (total " << nold+nnew << ") to " << mydir

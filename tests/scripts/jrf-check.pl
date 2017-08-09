@@ -1,4 +1,4 @@
-#!/usr/bin/perl
+#!/usr/bin/env perl
 # This is a perl script to run through a number of tests to verify the
 # functionality of FastBit keyword index.
 # It expects two arguments:

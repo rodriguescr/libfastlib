@@ -1,4 +1,4 @@
-#!/usr/bin/perl
+#!/usr/bin/env perl
 #
 # Compare two histogram files and report the maximum relative
 # difference.  The input files are assumed to be coma-separated values

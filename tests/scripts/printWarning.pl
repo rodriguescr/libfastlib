@@ -1,4 +1,4 @@
-#!/usr/bin/perl
+#!/usr/bin/env perl
 # a simple script to print Warning messages along with some selected
 # information
 while (<>) {
